@@ -1911,57 +1911,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      item: 0,
       drawer: null,
-      items: []
+      selectedItem: 1,
+      items: [{
+        text: 'Articulos',
+        icon: 'mdi-shopping',
+        route: "/public/articles"
+      }, {
+        text: 'Servicios',
+        icon: 'mdi-calendar-check',
+        route: "/public/services"
+      }, {
+        text: 'Ventas',
+        icon: 'mdi-cart',
+        route: "/admin/shops"
+      }],
+      admins: [['Management', 'mdi-account-multiple-outline'], ['Settings', 'mdi-cog-outline']],
+      cruds: [['Create', 'mdi-plus-outline'], ['Read', 'mdi-file-outline'], ['Update', 'mdi-update'], ['Delete', 'mdi-delete']]
     };
-  },
-  mounted: function mounted() {
-    this.items = [{
-      text: "Eventos",
-      icon: "mdi-soccer",
-      children: [{
-        text: "Ver",
-        icon: "mdi-format-list-bulleted",
-        route: "/event/index"
-      }, {
-        text: "Asignar",
-        icon: "mdi-account-check-outline",
-        route: "/event/asignar"
-      }, {
-        text: "Consultar",
-        icon: "mdi-arrow-right-bold-circle-outline",
-        route: "/event/consultar"
-      }, {
-        text: "Reportes",
-        icon: "mdi-file-document",
-        route: "/event/reports"
-      }]
-    }, {
-      text: "Actividad complementaria",
-      icon: "mdi-soccer",
-      children: [{
-        text: "Ver",
-        icon: "mdi-eye",
-        route: "/acom/list"
-      }, {
-        text: "Crear ",
-        icon: "mdi-pencil",
-        route: "/acom/create"
-      }, {
-        text: "Configuracion ",
-        icon: "mdi-message-processing",
-        route: "/acom/configuration"
-      }, {
-        text: "Reportes",
-        icon: "mdi-file-document",
-        route: "/acom/Reports"
-      }]
-    }];
   }
+  /*mounted() {
+    this.items = [
+      {
+        text: "Eventos",
+        icon: "mdi-soccer",
+        children: [
+          {
+            text: "Ver",
+            icon: "mdi-format-list-bulleted",
+            route: "/event/index",
+          },
+          {
+            text: "Asignar",
+            icon: "mdi-account-check-outline",
+            route: "/event/asignar",
+          },
+          {
+            text: "Consultar",
+            icon: "mdi-arrow-right-bold-circle-outline",
+            route: "/event/consultar",
+          },
+          {
+            text: "Reportes",
+            icon: "mdi-file-document",
+            route: "/event/reports",
+          },
+        ],
+      },
+      {
+        text: "Actividad complementaria",
+        icon: "mdi-soccer",
+        children: [
+          { text: "Ver", icon: "mdi-eye", route: "/acom/list" },
+          { text: "Crear ", icon: "mdi-pencil", route: "/acom/create" },
+          {
+            text: "Configuracion ",
+            icon: "mdi-message-processing",
+            route: "/acom/configuration",
+          },
+          {
+            text: "Reportes",
+            icon: "mdi-file-document",
+            route: "/acom/Reports",
+          },
+        ],
+      },
+    ];
+  },*/
+
 });
 
 /***/ }),
@@ -19850,60 +19907,147 @@ var render = function() {
             [
               _c(
                 "v-list",
-                { attrs: { nav: "", dense: "" } },
-                _vm._l(_vm.items, function(item, i) {
-                  return _c(
+                { attrs: { rounded: "" } },
+                [
+                  _c("v-subheader", [_vm._v("ACCIONES")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-group",
+                    {
+                      attrs: { color: "primary" },
+                      model: {
+                        value: _vm.selectedItem,
+                        callback: function($$v) {
+                          _vm.selectedItem = $$v
+                        },
+                        expression: "selectedItem"
+                      }
+                    },
+                    _vm._l(_vm.items, function(item, i) {
+                      return _c(
+                        "v-list-item",
+                        { key: i, attrs: { to: item.route } },
+                        [
+                          _c(
+                            "v-list-item-icon",
+                            [
+                              _c("v-icon", {
+                                domProps: { textContent: _vm._s(item.icon) }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", {
+                                domProps: { textContent: _vm._s(item.text) }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list",
+                [
+                  _c(
                     "v-list-group",
                     {
-                      key: i,
-                      attrs: { "prepend-icon": item.action, "no-action": "" },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "activator",
-                            fn: function() {
-                              return [
-                                _c(
-                                  "v-list-item-content",
-                                  [
-                                    _c("v-list-item-title", [
-                                      _vm._v(_vm._s(item.text))
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ]
-                            },
-                            proxy: true
-                          }
-                        ],
-                        null,
-                        true
-                      ),
-                      model: {
-                        value: item.active,
-                        callback: function($$v) {
-                          _vm.$set(item, "active", $$v)
-                        },
-                        expression: "item.active"
-                      }
+                      attrs: { value: true, "no-action": "", "sub-group": "" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function() {
+                            return [
+                              _c(
+                                "v-list-item-content",
+                                [_c("v-list-item-title", [_vm._v("Admin")])],
+                                1
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
                     },
                     [
                       _vm._v(" "),
-                      _vm._l(item.children, function(child, i) {
+                      _vm._l(_vm.admins, function(ref, i) {
+                        var title = ref[0]
+                        var icon = ref[1]
                         return _c(
                           "v-list-item",
-                          { key: i, attrs: { link: "", to: child.route } },
+                          { key: i, attrs: { link: "" } },
                           [
                             _c("v-list-item-title", {
-                              domProps: { textContent: _vm._s(child.text) }
+                              domProps: { textContent: _vm._s(title) }
                             }),
                             _vm._v(" "),
                             _c(
                               "v-list-item-icon",
                               [
                                 _c("v-icon", {
-                                  domProps: { textContent: _vm._s(child.icon) }
+                                  domProps: { textContent: _vm._s(icon) }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-group",
+                    {
+                      attrs: { "no-action": "", "sub-group": "" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function() {
+                            return [
+                              _c(
+                                "v-list-item-content",
+                                [_c("v-list-item-title", [_vm._v("Actions")])],
+                                1
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    },
+                    [
+                      _vm._v(" "),
+                      _vm._l(_vm.cruds, function(ref, i) {
+                        var title = ref[0]
+                        var icon = ref[1]
+                        return _c(
+                          "v-list-item",
+                          { key: i, attrs: { link: "" } },
+                          [
+                            _c("v-list-item-title", {
+                              domProps: { textContent: _vm._s(title) }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-item-icon",
+                              [
+                                _c("v-icon", {
+                                  domProps: { textContent: _vm._s(icon) }
                                 })
                               ],
                               1
@@ -19915,7 +20059,7 @@ var render = function() {
                     ],
                     2
                   )
-                }),
+                ],
                 1
               )
             ],
