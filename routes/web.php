@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any','.*');
+
+Route::post('iniciar-sesion', [UsuariosController::class, 'iniciarSesion']);
+
+Route::post('logout', [UsuariosController::class, 'logout']);
+
+

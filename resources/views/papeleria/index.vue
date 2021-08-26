@@ -10,12 +10,12 @@
       </template>
 
       <v-img
-        max-height="200"
-        max-width="200"
-        src="../../assets/pape.png"
+        max-height="400"
+        max-width="400"
+        src="images/pape.png" 
       ></v-img>
 
-      <v-card-title>Cafe eeeeBadilico</v-card-title>
+      <v-card-title>Papeleria</v-card-title>
 
       <v-card-text>
         <v-row align="center" class="mx-0">

@@ -19,13 +19,13 @@
             </div>
             <v-text-field
               prepend-icon="mdi-account"
-  
+              v-model="form.email"
               label="Correo Electrónico"
             >
             </v-text-field>
             <v-text-field
               label="Contraseña"
-              
+              v-model="form.password"
               prepend-icon="mdi-lock"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               :type="showPassword ? 'text' : 'password'"
@@ -35,7 +35,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn large block color="primary">Ingresar</v-btn>
+            <v-btn large block color="primary" @click="ingresar">Ingresar</v-btn>
           </v-card-actions>
           <v-card-actions >
 
@@ -56,9 +56,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+import swal from 'sweetalert';
+
 export default {
-  components: {  },
   name: "login",
+    components: {},
+
   data: () => ({
     showPassword: false,
     form: {
@@ -70,7 +74,34 @@ export default {
     value: false,
   }),
   methods: {
+    ingresar(){
+      let response = {
+        "email": this.form.email,
+        "password": this.form.password
+      };
+      axios.post('/iniciar-sesion', response).then( data =>{
+        console.log('pasa aquiiii')
+        swal('Has iniciado sesion', 'Datos Correctos', 'success');
+        this.$router.push({ path: 'admin/shops' })
+        
+      }).catch(error=>{
+        console.log(error.response.data.errors)
+        let err = error.response.data.errors;
+        let mensaje = 'Error No Identificado';
 
+        if(err.hasOwnProperty('email'))
+        {
+          mensaje = err.email[0];
+        }
+        else if(err.hasOwnProperty('password')){
+          mensaje = err.password[0];
+        }
+        else if(err.hasOwnProperty('login')){
+          mensaje = err.login[0];
+        }
+        swal('Error', mensaje, 'error');
+      });
+    }
   },
 };
 </script>
